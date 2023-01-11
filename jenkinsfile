@@ -1,2 +1,9 @@
-pipline
-  agent any
+pipline {
+    agent any
+       stages {
+         stage {
+	   stpes
+
+       }
+   }
+}
