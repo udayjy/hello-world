@@ -1,9 +1,26 @@
-pipline {
+pipeline {
     agent any
-       stages {
-         stage {
-	   stpes
-
-       }
-   }
-}
+    environment{
+        PATH = "/opt/maven3.8/bin:$PATH"
+    }
+    stages {
+        stage('git') {
+            steps {
+                git branch: 'main', url: 'https://github.com/udayjy/hello-world.git'
+            }
+        }
+        stage('code build') {
+            steps {
+                sh "mvn clean install"
+            }
+        }   
+      stage("build & SonarQube analysis") {
+            agent any
+            steps {
+              withSonarQubeEnv('sonar369') {
+                sh 'mvn clean package sonar:sonar'
+              }
+            }
+         }
+       }   
+    } 
