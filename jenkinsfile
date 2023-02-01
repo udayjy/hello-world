@@ -1,18 +1,16 @@
-pipeline {
-    agent any
-    environment{
-        PATH = "/home/ubuntu/maven-3.8.7/bin"
-    }
+pipeline{
+    
+    agent any 
+    
     stages {
-        stage('git') {
-            steps {
-                git branch: 'main', url: 'https://github.com/udayjy/hello-world.git'
+        
+        stage('Git Checkout'){
+            
+            steps{
+                
+                script{
+                    
+                    git branch: 'main', url: 'https://github.com/udayjy/hello-world.git'
+                }
             }
         }
-        stage('code build') {
-            steps {
-                sh "mvn clean install"
-            }
-          } 
-       }
-    }   
