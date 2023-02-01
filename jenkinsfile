@@ -34,13 +34,13 @@ pipeline{
                 }
             }
         }  
-           stage('integration testing'){
+           stage('mvn build'){
             
             steps{
                 
                 script{
                     
-                    sh 'mvn build'
+                    sh 'mvn clean install'
                 }
             }
         }  
