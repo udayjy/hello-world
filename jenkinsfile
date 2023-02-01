@@ -44,5 +44,17 @@ pipeline{
                 }
             }
         }  
+          stage('sonarqub test'){
+            
+            steps{
+                
+                script{
+                    
+                    withsonarqubeenv(credentialsId: 'sonar-api') {
+                     sh 'mvn clean package sonar:sonar'
+                    }
+                }
+            }
+        }  
     }
 }    
